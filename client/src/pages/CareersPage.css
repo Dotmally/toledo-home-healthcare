@@ -1,0 +1,56 @@
+.careers-page {
+  padding: 2rem;
+}
+
+.careers-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.job-openings h2,
+.application-form h2 {
+  color: #004080;
+  margin-top: 2rem;
+}
+
+.job-openings ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.job-openings li {
+  background: #f8f8f8;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-left: 5px solid #ffa500;
+}
+
+.application-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  margin: auto;
+}
+
+.application-form input,
+.application-form textarea {
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.application-form button {
+  background-color: #004080;
+  color: white;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.application-form button:hover {
+  background-color: #003366;
+}
