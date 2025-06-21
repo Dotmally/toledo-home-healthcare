@@ -16,7 +16,7 @@ const upload = multer({ storage });
 
 // POST: Save application to DB
 router.post('/', upload.single('resume'), async (req, res) => {
-  const { name, email, phone, message } = req.body;
+  const { name, email, phone, message, jobId } = req.body;
   const resumePath = req.file ? req.file.path : null;
 
   try {
@@ -26,6 +26,7 @@ router.post('/', upload.single('resume'), async (req, res) => {
       phone,
       message,
       resumePath,
+      jobId, // associate with specific job
     });
 
     await newApp.save();

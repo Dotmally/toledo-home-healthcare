@@ -1,0 +1,44 @@
+.job-details-page {
+  padding: 2rem;
+  max-width: 800px;
+  margin: auto;
+}
+
+.job-details-page h1 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.job-full-description {
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+.application-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.application-form input,
+.application-form textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.application-form button {
+  padding: 0.75rem;
+  background-color: #004080;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.application-form button:hover {
+  background-color: #0066cc;
+}

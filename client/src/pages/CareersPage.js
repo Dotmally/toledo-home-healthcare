@@ -1,44 +1,75 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './CareersPage.css';
 
 function CareersPage() {
-  // 👉 Add this state and submit handler here:
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [message, setMessage] = useState('');
-  const [resume, setResume] = useState(null);
+  const [jobs, setJobs] = useState([]);
+  const [formStates, setFormStates] = useState({}); // Track form input for each job
 
-  const handleSubmit = async (e) => {
+  useEffect(() => {
+    axios.get('/api/jobs')
+      .then(res => {
+        setJobs(res.data);
+        // Initialize form state for each job
+        const initialState = {};
+        res.data.forEach(job => {
+          initialState[job._id] = {
+            name: '',
+            email: '',
+            phone: '',
+            message: '',
+            resume: null,
+          };
+        });
+        setFormStates(initialState);
+      })
+      .catch(err => console.error('Error fetching jobs:', err));
+  }, []);
+
+  const handleChange = (jobId, field, value) => {
+    setFormStates(prev => ({
+      ...prev,
+      [jobId]: {
+        ...prev[jobId],
+        [field]: value
+      }
+    }));
+  };
+
+  const handleSubmit = async (e, jobId) => {
     e.preventDefault();
-    
     const formData = new FormData();
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('phone', phone);
-    formData.append('message', message);
-    formData.append('resume', resume);
+    const state = formStates[jobId];
+
+    formData.append('name', state.name);
+    formData.append('email', state.email);
+    formData.append('phone', state.phone);
+    formData.append('message', state.message);
+    formData.append('resume', state.resume);
+    formData.append('jobId', jobId);
 
     try {
-      const res = await axios.post('/api/applications', formData, {
+      await axios.post('/api/applications', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       alert('Application submitted successfully!');
-
-      // Reset form
-      setName('');
-      setEmail('');
-      setPhone('');
-      setMessage('');
-      setResume(null);
+      // Reset form for this job
+      setFormStates(prev => ({
+        ...prev,
+        [jobId]: {
+          name: '',
+          email: '',
+          phone: '',
+          message: '',
+          resume: null
+        }
+      }));
     } catch (err) {
       console.error(err);
       alert('There was an error submitting your application.');
     }
   };
 
-  // 👇 Then below that, your return block stays mostly the same:
   return (
     <div className="careers-page">
       <section className="careers-header">
@@ -47,30 +78,23 @@ function CareersPage() {
       </section>
 
       <section className="job-openings">
-        <h2>Current Openings</h2>
-        <ul>
-          <li>
-            <h3>Personal Support Worker (PSW)</h3>
-            <p>Provide direct care and support for clients in their homes.</p>
-          </li>
-          <li>
-            <h3>Registered Nurse (RN)</h3>
-            <p>Conduct assessments, develop care plans, and coordinate services.</p>
-          </li>
-        </ul>
-      </section>
-
-      <section className="application-form">
-        <h2>Apply Now</h2>
-        <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Full Name" value={name} onChange={e => setName(e.target.value)} required />
-          <input type="email" placeholder="Email Address" value={email} onChange={e => setEmail(e.target.value)} required />
-          <input type="tel" placeholder="Phone Number" value={phone} onChange={e => setPhone(e.target.value)} required />
-          <textarea placeholder="Tell us about yourself" rows="4" value={message} onChange={e => setMessage(e.target.value)} required />
-          <input type="file" onChange={e => setResume(e.target.files[0])} required />
-          <button type="submit">Submit Application</button>
-        </form>
-      </section>
+  <h2>Current Openings</h2>
+  <div className="job-list">
+    {jobs.map((job) => (
+      <div key={job._id} className="job-card">
+        <h3>{job.title}</h3>
+        <p className="job-snippet">
+          {job.description.length > 150
+            ? job.description.substring(0, 150) + '...'
+            : job.description}
+        </p>
+        <a href={`/careers/job/${job._id}`} className="btn-view-details">
+          View Details
+        </a>
+      </div>
+    ))}
+  </div>
+</section>
     </div>
   );
 }

@@ -6,6 +6,11 @@ const applicationSchema = new mongoose.Schema({
   phone: String,
   message: String,
   resumePath: String,
+  jobId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'JobPosting',
+    required: true
+  },
   submittedAt: {
     type: Date,
     default: Date.now

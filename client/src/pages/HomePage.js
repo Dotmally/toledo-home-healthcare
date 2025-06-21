@@ -27,7 +27,7 @@ function HomePage() {
           <p>Serving Toledo, Ohio with professional and personalized home health services.</p>
           <div className="hero-buttons">
             <button className="btn-primary">Explore Services</button>
-            <button className="btn-secondary">Join Our Team</button>
+            <button className="btn-primary">Join Our Team</button>
           </div>
         </div>
       </section>

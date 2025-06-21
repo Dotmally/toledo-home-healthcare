@@ -16,10 +16,22 @@ router.post('/', async (req, res) => {
 // Get all job postings
 router.get('/', async (req, res) => {
   try {
-    const jobs = await JobPosting.find().sort({ createdAt: -1 });
+    const jobs = await JobPosting.find();
     res.json(jobs);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    console.error('Error fetching jobs:', err);
+    res.status(500).json({ message: 'Failed to retrieve jobs' });
+  }
+});
+
+router.get('/:id', async (req, res) => {
+  try {
+    const job = await JobPosting.findById(req.params.id);
+    if (!job) return res.status(404).json({ message: 'Job not found' });
+    res.json(job);
+  } catch (err) {
+    console.error('Error fetching job:', err);
+    res.status(500).json({ message: 'Failed to fetch job' });
   }
 });
 

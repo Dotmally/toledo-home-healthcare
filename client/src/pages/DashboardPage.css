@@ -12,3 +12,45 @@
   border: 1px solid #ccc;
   text-align: left;
 }
+
+.job-form {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 500px;
+}
+
+.job-form input,
+.job-form textarea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.job-form button {
+  padding: 0.5rem;
+  background-color: #0073e6;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.job-form button:hover {
+  background-color: #005bb5;
+}
+.post-job-form {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.post-job-form input,
+.post-job-form textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}

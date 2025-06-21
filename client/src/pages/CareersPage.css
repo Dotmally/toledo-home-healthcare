@@ -54,3 +54,44 @@
 .application-form button:hover {
   background-color: #003366;
 }
+
+.job-list {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-top: 1rem;
+}
+
+.job-card {
+  border: 1px solid #ddd;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.job-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.job-snippet {
+  margin: 1rem 0;
+  color: #555;
+}
+
+.btn-view-details {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #004080;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.btn-view-details:hover {
+  background-color: #0066cc;
+}
