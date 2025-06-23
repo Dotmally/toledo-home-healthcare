@@ -1,21 +1,31 @@
-// src/pages/AdminLoginPage.js
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './AdminLoginPage.css';
+import axios from 'axios';
 
-function AdminLoginPage() {
+function AdminLoginPage({ setIsAdmin }) {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (password === 'securepassword') { // change to your preferred password
+  const from = location.state?.from || '/dashboard';
+
+  const handleLogin = async (e) => {
+  e.preventDefault();
+  try {
+    const res = await axios.post('http://localhost:5000/api/admin/login', { password });
+    if (res.data.success) {
       localStorage.setItem('admin-auth', 'true');
-      navigate('/dashboard');
+      setIsAdmin(true);
+      navigate(from);
     } else {
       alert('Incorrect password');
     }
-  };
+  } catch (err) {
+    console.error(err);
+    alert('Login error.');
+  }
+};
 
   return (
     <div className="admin-login-container">

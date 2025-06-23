@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const multer = require('multer');
 const cors = require('cors');
@@ -29,6 +30,18 @@ app.use('/api/jobs', jobRoutes);
 
 const applicationRoutes = require('./routes/applications');
 app.use('/api/applications', applicationRoutes);
+
+app.post('/api/admin/login', (req, res) => {
+  const { password } = req.body;
+  console.log('Password from .env:', process.env.ADMIN_PASSWORD);
+  console.log('Password received:', password);
+  if (password === process.env.ADMIN_PASSWORD) {
+    res.status(200).json({ success: true });
+  } else {
+    res.status(401).json({ success: false, message: 'Incorrect password' });
+  }
+});
+
 
 // Start server
 app.listen(5000, () => console.log('🚀 Server running on http://localhost:5000'));
