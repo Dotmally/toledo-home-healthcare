@@ -5,6 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
 const fs = require('fs');
+const MONGODB_URI = process.env.MONGODB_URI;
 
 const app = express();
 app.use(cors());
@@ -14,11 +15,17 @@ app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // ✅ Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI, {
+console.log("Connecting to MongoDB with URI:", MONGODB_URI.replace(/:[^@]+@/, ':*****@'));
+if (!MONGODB_URI) {
+  console.error('❌ No MongoDB URI found in environment variables');
+  process.exit(1);
+}
+
+mongoose.connect(MONGODB_URI, {
   retryWrites: true,
   w: 'majority'
 })
-.then(() => console.log('✅ Connected to MongoDB'))
+.then(() => console.log('✅ MongoDB connected successfully'))
 .catch(err => console.error('❌ MongoDB connection error:', err));
 
 // Ensure uploads folder exists
