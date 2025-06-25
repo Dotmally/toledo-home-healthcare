@@ -13,13 +13,13 @@ function DashboardPage() {
 
   useEffect(() => {
     // Fetch applications
-    fetch('http://localhost:5000/api/applications')
+    fetch(`${process.env.REACT_APP_API_URL}/api/applications`)
       .then(res => res.json())
       .then(data => setApplications(data))
       .catch(err => console.error('Error fetching applications:', err));
 
     // Fetch job postings
-    fetch('http://localhost:5000/api/jobs')
+    fetch(`${process.env.REACT_APP_API_URL}/api/jobs`)
       .then(res => res.json())
       .then(data => setJobs(data))
       .catch(err => console.error('Error fetching jobs:', err));
@@ -28,7 +28,7 @@ function DashboardPage() {
   const handlePostJob = async (e) => {
   e.preventDefault();
   try {
-    const res = await fetch('http://localhost:5000/api/jobs', {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/jobs`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ function DashboardPage() {
     setDescription('');
     
     // Refresh jobs
-    const newJobs = await fetch('http://localhost:5000/api/jobs').then(res => res.json());
+    const newJobs = await fetch(`${process.env.REACT_APP_API_URL}/api/jobs`).then(res => res.json());
     setJobs(newJobs);
   } catch (err) {
     console.error('Error posting job:', err);
@@ -57,7 +57,7 @@ function DashboardPage() {
   if (!window.confirm('Are you sure you want to delete this job posting?')) return;
 
   try {
-    const res = await fetch(`http://localhost:5000/api/jobs/${jobId}`, {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/jobs/${jobId}`, {
       method: 'DELETE',
     });
     if (!res.ok) throw new Error('Failed to delete job');
