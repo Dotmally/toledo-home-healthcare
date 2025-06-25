@@ -11,8 +11,12 @@
 
 .job-full-description {
   margin-bottom: 2rem;
-  line-height: 1.6;
+  line-height: 1.8;
   color: #444;
+  font-size: 1.1rem;
+  white-space: pre-line;  /* 👈 This preserves line breaks from plain text */
+  text-align: left;        /* 👈 Ensures text is aligned for easy reading */
+  padding: 1rem 0;         /* 👈 Adds spacing above/below for breathing room */
 }
 
 .application-form {
@@ -42,3 +46,4 @@
 .application-form button:hover {
   background-color: #0066cc;
 }
+

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './CareersPage.css';
+import Footer from '../components/Footer';
 
 function CareersPage() {
   const [jobs, setJobs] = useState([]);
@@ -95,6 +96,7 @@ function CareersPage() {
     ))}
   </div>
 </section>
+<Footer />
     </div>
   );
 }

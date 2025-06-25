@@ -1,0 +1,51 @@
+.cta-banner {
+  margin-top: 100px;
+  background-color: #6b966e;
+  color: white;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.cta-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.cta-content p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.cta-content .btn-primary {
+  background-color: #373643;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.cta-content .btn-primary:hover {
+  background-color: #e69500;
+}
+
+.footer {
+  margin-top: 40px;
+  background-color: #373643;
+  color: #ccc;
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 2rem;
+}
+
+.footer-content a {
+  color: #ffa500;
+  text-decoration: none;
+}
+
+.footer-content a:hover {
+  text-decoration: underline;
+}

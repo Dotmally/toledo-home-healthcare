@@ -1,5 +1,7 @@
 import React from 'react';
 import './ServicesPage.css';
+import Footer from '../components/Footer'; // ✅ No curly braces
+
 
 
 const services = [
@@ -54,6 +56,7 @@ function ServicesPage() {
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   );
 }

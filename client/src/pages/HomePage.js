@@ -2,6 +2,7 @@ import './HomePage.css';
 import heroImage from '../assets/hero-homecare.jpg';
 import AboutSection from '../components/AboutSection';
 import ServicesSection from '../components/ServicesSection';
+import { Link } from 'react-router-dom';
 
 const heroStyle = {
   backgroundImage: `url(${heroImage})`,
@@ -26,8 +27,8 @@ function HomePage() {
           <h1>Compassionate In-Home Care You Can Trust</h1>
           <p>Serving Toledo, Ohio with professional and personalized home health services.</p>
           <div className="hero-buttons">
-            <button className="btn-primary">Explore Services</button>
-            <button className="btn-primary">Join Our Team</button>
+            <Link to="/services" className="btn-primary">Explore Services</Link>
+            <Link to="/careers" className="btn-primary">Join Our Team</Link>
           </div>
         </div>
       </section>

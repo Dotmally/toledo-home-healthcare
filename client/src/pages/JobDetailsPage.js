@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './JobDetailsPage.css';
+import Footer from '../components/Footer';
 
 function JobDetailsPage() {
   const { id } = useParams();
@@ -60,7 +61,9 @@ function JobDetailsPage() {
         <input type="file" onChange={e => setResume(e.target.files[0])} required />
         <button type="submit">Submit Application</button>
       </form>
+      <Footer />
     </div>
+
   );
 }
 
