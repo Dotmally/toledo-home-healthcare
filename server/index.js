@@ -14,27 +14,25 @@ app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // ✅ Connect to MongoDB
+
+console.log('Node environment:', process.env.NODE_ENV);
+console.log('MongoDB host:', process.env.MONGODB_URI?.split('@')[1]?.split('/')[0]);
 const MONGODB_URI = process.env.MONGODB_URI;
 
 // Critical failure if URI is missing
 if (!MONGODB_URI) {
-  console.error('❌ FATAL: MONGODB_URI is not defined in environment variables');
-  console.error('Current environment:', process.env.NODE_ENV || 'development');
+  console.error('❌ Critical Error: MONGODB_URI is required');
+  console.error('For local development: Create .env file in /server');
+  console.error('For production: Set in Render Environment Variables');
   process.exit(1);
 }
 
-// Safe debug output
-console.log('Attempting MongoDB connection...');
-
-mongoose.connect(MONGODB_URI, {
-  retryWrites: true,
-  w: 'majority'
-})
-.then(() => console.log('✅ MongoDB connected successfully'))
-.catch(err => {
-  console.error('❌ MongoDB connection failed:', err.message);
-  process.exit(1);
-});
+mongoose.connect(MONGODB_URI)
+  .then(() => console.log('✅ MongoDB connected to', MONGODB_URI.split('@')[1].split('/')[0]))
+  .catch(err => {
+    console.error('❌ Connection failed:', err.message);
+    process.exit(1);
+  });
 
 // Ensure uploads folder exists
 if (!fs.existsSync('./uploads')) {
