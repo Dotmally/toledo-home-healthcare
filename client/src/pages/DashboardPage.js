@@ -133,7 +133,7 @@ function DashboardPage() {
                         <td>
                           {app.resumePath ? (
                             <a
-                              href={`http://localhost:5000/${app.resumePath.replace(/\\/g, '/')}`}
+                              href={`${process.env.REACT_APP_API_URL}/${app.resumePath.replace(/\\/g, '/')}`}
                               target="_blank"
                               rel="noopener noreferrer"
                             >

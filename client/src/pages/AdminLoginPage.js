@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './AdminLoginPage.css';
 import axios from 'axios';
+import api from '../api/config';
 
 function AdminLoginPage({ setIsAdmin }) {
   const [password, setPassword] = useState('');
@@ -13,7 +14,7 @@ function AdminLoginPage({ setIsAdmin }) {
   const handleLogin = async (e) => {
   e.preventDefault();
   try {
-    const res = await axios.post('http://localhost:5000/api/admin/login', { password });
+    const res = await api.post('/api/admin/login', { password });
     if (res.data.success) {
       localStorage.setItem('admin-auth', 'true');
       setIsAdmin(true);

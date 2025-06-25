@@ -7,12 +7,17 @@ function CareersPage() {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/jobs')
-      .then(res => {
+  axios.get(`${process.env.REACT_APP_API_URL}/api/jobs`)
+    .then(res => {
+      if (Array.isArray(res.data)) { // Add validation
         setJobs(res.data);
-      })
-      .catch(err => console.error('Error fetching jobs:', err));
-  }, []);
+      } else {
+        console.error('Expected array but got:', res.data);
+        setJobs([]);
+      }
+    })
+    .catch(err => console.error('Error fetching jobs:', err));
+}, []);
 
   return (
     <div className="careers-page">
