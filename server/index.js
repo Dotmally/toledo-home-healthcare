@@ -1,3 +1,6 @@
+console.log('Checking environment variables...');
+console.log('MONGODB_URI exists?', !!process.env.MONGODB_URI);
+console.log('All env vars:', Object.keys(process.env));
 require('dotenv').config();
 const express = require('express');
 const multer = require('multer');
