@@ -10,7 +10,24 @@ const path = require('path');
 const fs = require('fs');
 
 const app = express();
-app.use(cors());
+const allowedOrigins = [
+  'https://toledohhc.com',              // Your production domain
+  'https://shiny-clafoutis-66daf7.netlify.app', // Your Netlify domain
+  'http://localhost:3000'               // Local development
+];
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = `CORS policy: ${origin} not allowed`;
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true
+}));
 app.use(express.json());
 
 // ✅ Serve uploaded resumes
