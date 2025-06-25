@@ -65,7 +65,9 @@ function HomePage() {
   <div className="cta-content">
     <h2>Need Reliable Home Health Care in Toledo?</h2>
     <p>We’re here to help. Contact us today to learn how we can support your loved ones.</p>
-    <button className="btn-primary">Contact Us</button>
+    <button className="btn-primary"
+    onClick={() => (window.location.href = '/contact')}
+    >Contact Us</button>
   </div>
 </section>
 <footer className="footer">

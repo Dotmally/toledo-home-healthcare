@@ -1,3 +1,6 @@
+@import '../../styles/breakpoints.css';
+
+
 .admin-login-container {
   max-width: 400px;
   margin: 5rem auto;
@@ -27,4 +30,20 @@
 
 .admin-login-container button:hover {
   background-color: #0056b3;
+}
+
+/* Mobile-specific styles */
+@media (max-width: var(--mobile)) {
+  .job-details-container {
+    padding: 15px;
+  }
+  
+  .job-title {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+  
+  .application-form {
+    width: 100%;
+  }
 }
