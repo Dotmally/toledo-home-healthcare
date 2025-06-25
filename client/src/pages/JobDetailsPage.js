@@ -14,7 +14,7 @@ function JobDetailsPage() {
   const [resume, setResume] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/jobs/${id}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/jobs/${id}`)
       .then(res => setJob(res.data))
       .catch(err => console.error('Error fetching job:', err));
   }, [id]);
@@ -30,7 +30,7 @@ function JobDetailsPage() {
     formData.append('resume', resume);
 
     try {
-      await axios.post('http://localhost:5000/api/applications', formData, {
+      await axios.post('${process.env.REACT_APP_API_URL}/api/applications', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       alert('Application submitted successfully!');
