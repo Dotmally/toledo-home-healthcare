@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './AdminLoginPage.css';
-import axios from 'axios';
 import api from '../api/config';
 
 function AdminLoginPage({ setIsAdmin }) {
