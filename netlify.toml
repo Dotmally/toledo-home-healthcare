@@ -1,0 +1,8 @@
+[build]
+  base = "client"
+  publish = "build"
+  command = "npm run build"
+
+[context.production.environment]
+  REACT_APP_API_URL = "https://toledo-home-healthcare.onrender.com"
+  REACT_APP_ENV = "production"
