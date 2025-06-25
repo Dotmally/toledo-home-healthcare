@@ -4,6 +4,7 @@ import service1 from '../assets/service1.jpg'; // Replace with real images
 import service2 from '../assets/service2.jpg';
 import service3 from '../assets/service3.jpg';
 
+
 const ServicesSection = () => {
   const services = [
     {

@@ -182,21 +182,3 @@
 .footer-content a:hover {
   text-decoration: underline;
 }
-
-@media (max-width: 768px) {
-  .job-details-page, .careers-page, .contact-page {
-    padding: 15px !important;
-    width: 100% !important;
-    margin: 0 !important;
-  }
-
-  .hero h1 {
-    font-size: 2rem !important;
-  }
-
-  .application-form input, 
-  .application-form textarea {
-    width: 90% !important;
-    margin: 10px auto !important;
-  }
-}
