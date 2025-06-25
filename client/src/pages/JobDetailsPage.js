@@ -30,7 +30,7 @@ function JobDetailsPage() {
     formData.append('resume', resume);
 
     try {
-      await axios.post('${process.env.REACT_APP_API_URL}/api/applications', formData, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/applications`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       alert('Application submitted successfully!');
