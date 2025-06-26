@@ -23,8 +23,8 @@ function ContactPage() {
 
       <div className="contact-info">
         <p><strong>Email:</strong> <a href="mailto:toledohhc@gmail.com">toledohhc@gmail.com</a></p>
-        <p><strong>Phone:</strong> (419) 555-1234</p>
-        <p><strong>Address:</strong> 123 Toledo Ave, Toledo, OH</p>
+        <p><strong>Phone:</strong> +1 419-214-0200</p>
+        <p><strong>Address:</strong> 4230 Secor Rd, Toledo, OH 43623</p>
       </div>
       <div className='map-container'>
       <iframe 
