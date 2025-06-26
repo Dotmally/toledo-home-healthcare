@@ -22,10 +22,6 @@ const heroStyle = {
   position: 'relative',
 };
 
-useEffect(() => {
-  AOS.init({ duration: 1000 });
-}, []);
-
 function HomePage() {
   useEffect(() => {
   AOS.init({ duration: 1000 });
