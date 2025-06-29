@@ -13,7 +13,7 @@
 }
 
 .logo {
-  height: 60px; /* Base size for desktop */
+  height: 100px; /* Base size for desktop */
   width: auto; /* Maintain aspect ratio */
   transition: height 0.3s ease; /* Smooth resizing */
 }
