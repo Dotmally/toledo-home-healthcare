@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import logo from '../assets/logo.png'; 
 import './Navbar.css'; // Your navbar styles
 
 function Navbar() {
@@ -11,8 +12,12 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <img src="/assets/logo.png" alt="Logo" className="logo" />
-      </div>
+      <img 
+          src={logo} 
+          alt="Toledo Home Healthcare Logo" 
+          className="logo"
+        />
+          </div>
 
       {/* Hamburger Button */}
       <button 
