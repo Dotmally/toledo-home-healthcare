@@ -182,3 +182,29 @@
 .footer-content a:hover {
   text-decoration: underline;
 }
+
+/* Add to existing styles */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .hero-buttons a {
+    width: 100%;
+    padding: 12px;
+  }
+  
+  .testimonial-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+}
