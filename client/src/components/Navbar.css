@@ -13,7 +13,7 @@
 }
 
 .logo {
-  height: 100px; /* Base size for desktop */
+  height: 200px; /* Base size for desktop */
   width: auto; /* Maintain aspect ratio */
   transition: height 0.3s ease; /* Smooth resizing */
 }
@@ -103,14 +103,14 @@
 /* Tablet */
 @media (max-width: 1024px) {
   .logo {
-    height: 50px;
+    height: 200px;
   }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
   .logo {
-    height: 45px;
+    height: 150px;
   }
 }
 
