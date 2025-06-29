@@ -1,24 +1,39 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../assets/logo.png';
-import './Navbar.css';
+import { useState } from 'react';
+import './Navbar.css'; // Your navbar styles
 
-const Navbar = () => {
+function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <nav className="navbar">
-      <div className="navbar-left">
-        <Link to="/">
-          <img src={logo} alt="Company Logo" className="logo" />
-        </Link>
+      <div className="navbar-brand">
+        <img src="/logo.png" alt="Logo" className="logo" />
       </div>
-      <ul className="nav-links">
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/services">Services</Link></li>
-        <li><Link to="/careers">Careers</Link></li>
-        <li><Link to="/contact">Contact</Link></li>
-      </ul>
+
+      {/* Hamburger Button */}
+      <button 
+        className={`hamburger ${isOpen ? 'active' : ''}`} 
+        onClick={toggleMenu}
+        aria-label="Menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      {/* Navigation Links */}
+      <div className={`nav-links ${isOpen ? 'active' : ''}`}>
+        <a href="/">Home</a>
+        <a href="/services">Services</a>
+        <a href="/careers">Careers</a>
+        <a href="/contact">Contact</a>
+      </div>
     </nav>
   );
-};
+}
 
 export default Navbar;
