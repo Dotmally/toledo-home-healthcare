@@ -22,7 +22,30 @@ function JobDetailsPage() {
   }, [id]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  if (!applicationForm) {
+    alert('Application form is required');
+    return;
+  }
+
+  // File validation
+  const allowedTypes = [
+    'application/pdf',
+    'application/msword',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+  ];
+  
+  if (!allowedTypes.includes(applicationForm.type)) {
+    alert('Only PDF, DOC, or DOCX files are allowed');
+    return;
+  }
+
+  if (applicationForm.size > 5 * 1024 * 1024) {
+    alert('Application form must be smaller than 5MB');
+    return;
+  
     const formData = new FormData();
     formData.append('jobId', id);
     formData.append('name', name);
@@ -35,21 +58,36 @@ function JobDetailsPage() {
     }
 
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/api/applications`, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' }
-      });
-      alert('Application submitted successfully!');
-      setName('');
-      setEmail('');
-      setPhone('');
-      setMessage('');
-      setResume(null);
-    } catch (err) {
-      console.error('Error submitting application:', err);
-      alert('Failed to submit application.');
-    }
-  };
-
+    setIsSubmitting(true);
+    const response = await axios.post(
+      `${process.env.REACT_APP_API_URL}/api/applications`,
+      formData,
+      {
+        headers: { 'Content-Type': 'multipart/form-data' },
+        timeout: 30000 // 30 second timeout
+      }
+    );
+    
+    alert('Successfully submitted!');
+    // Reset all fields
+    setName('');
+    setEmail('');
+    setPhone('');
+    setMessage('');
+    setApplicationForm(null);
+    setResume(null);
+    
+  } catch (err) {
+    console.error('Submission error:', {
+      message: err.message,
+      response: err.response?.data,
+      stack: err.stack
+    });
+    alert(err.response?.data?.message || 'Submission failed. Please try again.');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
   if (!job) return <p>Loading job...</p>;
 
   return (
