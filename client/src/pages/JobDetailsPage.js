@@ -59,7 +59,7 @@ function JobDetailsPage() {
 
     try {
       setIsSubmitting(true);
-      const response = await axios.post(
+      await axios.post(
         `${process.env.REACT_APP_API_URL}/api/applications`,
         formData,
         {
