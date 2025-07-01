@@ -45,6 +45,7 @@ function JobDetailsPage() {
   if (applicationForm.size > 5 * 1024 * 1024) {
     alert('Application form must be smaller than 5MB');
     return;
+  }
   
     const formData = new FormData();
     formData.append('jobId', id);
