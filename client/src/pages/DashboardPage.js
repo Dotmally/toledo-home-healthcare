@@ -120,6 +120,7 @@ function DashboardPage() {
                       <th>Email</th>
                       <th>Phone</th>
                       <th>Message</th>
+                      <th>Application Form</th>
                       <th>Resume</th>
                     </tr>
                   </thead>
@@ -130,6 +131,19 @@ function DashboardPage() {
                         <td>{app.email}</td>
                         <td>{app.phone}</td>
                         <td>{app.message}</td>
+                        <td>
+                          {app.applicationFormPath ? (
+                            <a
+                              href={`${process.env.REACT_APP_API_URL}/${app.applicationFormPath.replace(/\\/g, '/')}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              View Form
+                            </a>
+                          ) : (
+                            'No File'
+                          )}
+                        </td>
                         <td>
                           {app.resumePath ? (
                             <a
@@ -143,6 +157,7 @@ function DashboardPage() {
                             'No File'
                           )}
                         </td>
+
                       </tr>
                     ))}
                   </tbody>
