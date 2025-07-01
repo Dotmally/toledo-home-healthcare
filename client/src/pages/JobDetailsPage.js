@@ -58,7 +58,7 @@ function JobDetailsPage() {
       <p className="job-full-description">{job.description}</p>
 
       <a
-        href="/forms/job-application.pdf"
+        href="/assets/job-application.pdf"
         download
         target="_blank"
         rel="noopener noreferrer"
