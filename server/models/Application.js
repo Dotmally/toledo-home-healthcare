@@ -5,7 +5,8 @@ const applicationSchema = new mongoose.Schema({
   email: String,
   phone: String,
   message: String,
-  resumePath: String,
+  applicationFormPath: String,  // Added this line
+  resumePath: String,           // already exists, keeping this
   jobId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'JobPosting',
