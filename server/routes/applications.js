@@ -15,9 +15,21 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // POST: Save application to DB
-router.post('/', upload.single('resume'), async (req, res) => {
+js
+Copy
+Edit
+// POST: Save application to DB
+router.post('/', upload.fields([
+  { name: 'applicationForm', maxCount: 1 },
+  { name: 'resume', maxCount: 1 }
+]), async (req, res) => {
   const { name, email, phone, message, jobId } = req.body;
-  const resumePath = req.file ? req.file.path : null;
+
+  const applicationFormFile = req.files['applicationForm']?.[0];
+  const resumeFile = req.files['resume']?.[0];
+
+  const applicationFormPath = applicationFormFile ? applicationFormFile.path : null;
+  const resumePath = resumeFile ? resumeFile.path : null;
 
   try {
     const newApp = new Application({
@@ -25,8 +37,9 @@ router.post('/', upload.single('resume'), async (req, res) => {
       email,
       phone,
       message,
-      resumePath,
-      jobId, // associate with specific job
+      jobId,
+      applicationFormPath,
+      resumePath
     });
 
     await newApp.save();
