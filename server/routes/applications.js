@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
-// POST: Save application to DB
+// POST: Save application to Db
 router.post('/', upload.fields([
   { name: 'applicationForm', maxCount: 1 },
   { name: 'resume', maxCount: 1 }
